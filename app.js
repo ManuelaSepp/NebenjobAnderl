@@ -1,4 +1,4 @@
-const SCRIPT_URL="https://script.google.com/macros/s/AKfycbw6AFla1jj2hQij6TwMSGO2rOBCIsj1gIY0uYIt25hKFCma1jg2ZuR90CLWVgijU5CoRQ/exec";
+const SCRIPT_URL="HIER_NEUE_APPS_SCRIPT_WEB_APP_URL_EINTRAGEN";
 const $=id=>document.getElementById(id),state={eintraege:[],taetigkeiten:[],kalenderDatum:new Date(),ausgewaehlt:null,originalDatum:null,soll:6,saldo:0,tooltipBlockDatum:null};
 const form=$("entryForm"),datum=$("datum"),taetigkeitenDropdown=$("taetigkeitenDropdown"),taetigkeitenButton=$("taetigkeitenButton"),taetigkeitenListe=$("taetigkeitenListe"),freieBox=$("freieBox"),freieTaetigkeit=$("freieTaetigkeit"),beginn=$("beginn"),ende=$("ende"),abwesenheit=$("abwesenheit"),notiz=$("notiz"),meldung=$("meldung");
 const save=$("saveButton"),update=$("updateButton"),del=$("deleteButton"),cancel=$("cancelButton"),buttonRow=$("buttonRow");
@@ -23,8 +23,8 @@ datum.onchange=datumGeaendert;
 
 async function init(){
   datum.value=iso(new Date());
-  beginn.value="07:00";
-  ende.value="13:00";
+  beginn.value="";
+  ende.value="";
   state.ausgewaehlt=datum.value;
   state.kalenderDatum=ausIso(datum.value);
   stundenBerechnen();
@@ -244,8 +244,8 @@ function eintragLaden(e){
   state.originalDatum=e.datum;
   datum.value=e.datum;
   taetigkeitenSetzen(e.taetigkeit);
-  beginn.value=e.beginn||"07:00";
-  ende.value=e.ende||"13:00";
+  beginn.value=e.beginn||"";
+  ende.value=e.ende||"";
   abwesenheit.value=e.abwesenheit||"";
   notiz.value=e.notiz||"";
   handleAbwesenheit();
@@ -263,8 +263,8 @@ function resetForm(heute=true){
   });
 
   freieTaetigkeit.value="";
-  beginn.value="07:00";
-  ende.value="13:00";
+  beginn.value="";
+  ende.value="";
   abwesenheit.value="";
   notiz.value="";
 
