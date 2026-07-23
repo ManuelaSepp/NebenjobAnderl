@@ -1,5 +1,5 @@
-const SCRIPT_URL="https://script.google.com/macros/s/AKfycbw6AFla1jj2hQij6TwMSGO2rOBCIsj1gIY0uYIt25hKFCma1jg2ZuR90CLWVgijU5CoRQ/exec";
-const $=id=>document.getElementById(id),state={eintraege:[],taetigkeiten:[],kalenderDatum:new Date(),ausgewaehlt:null,originalDatum:null,soll:6,saldo:0,tooltipBlockDatum:null};
+const SCRIPT_URL="HIER_NEUE_APPS_SCRIPT_WEB_APP_URL_EINTRAGEN";
+const $=id=>document.getElementById(id),state={eintraege:[],taetigkeiten:[],kalenderDatum:new Date(),ausgewaehlt:null,originalDatum:null,soll:0,saldo:0,tooltipBlockDatum:null};
 const form=$("entryForm"),datum=$("datum"),taetigkeitenDropdown=$("taetigkeitenDropdown"),taetigkeitenButton=$("taetigkeitenButton"),taetigkeitenListe=$("taetigkeitenListe"),freieBox=$("freieBox"),freieTaetigkeit=$("freieTaetigkeit"),beginn=$("beginn"),ende=$("ende"),abwesenheit=$("abwesenheit"),notiz=$("notiz"),meldung=$("meldung");
 const save=$("saveButton"),update=$("updateButton"),del=$("deleteButton"),cancel=$("cancelButton"),buttonRow=$("buttonRow");
 
@@ -194,7 +194,7 @@ async function ladeMonat(){
     const r=await laden();
     state.eintraege=r.eintraege||[];
     state.taetigkeiten=r.taetigkeiten||[];
-    state.soll=Number(r.sollstunden)||6;
+    state.soll=Number.isFinite(Number(r.sollstunden))?Number(r.sollstunden):0;
     state.saldo=Number(r.gesamtSaldo)||0;
     renderListe();
     renderKalender();
