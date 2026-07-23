@@ -1,4 +1,4 @@
-const SCRIPT_URL="HIER_NEUE_APPS_SCRIPT_WEB_APP_URL_EINTRAGEN";
+const SCRIPT_URL="https://script.google.com/macros/s/AKfycbw6AFla1jj2hQij6TwMSGO2rOBCIsj1gIY0uYIt25hKFCma1jg2ZuR90CLWVgijU5CoRQ/exec";
 const $=id=>document.getElementById(id),state={eintraege:[],taetigkeiten:[],kalenderDatum:new Date(),ausgewaehlt:null,originalDatum:null,soll:0,saldo:0,tooltipBlockDatum:null};
 const form=$("entryForm"),datum=$("datum"),taetigkeitenDropdown=$("taetigkeitenDropdown"),taetigkeitenButton=$("taetigkeitenButton"),taetigkeitenListe=$("taetigkeitenListe"),freieBox=$("freieBox"),freieTaetigkeit=$("freieTaetigkeit"),beginn=$("beginn"),ende=$("ende"),abwesenheit=$("abwesenheit"),notiz=$("notiz"),meldung=$("meldung");
 const save=$("saveButton"),update=$("updateButton"),del=$("deleteButton"),cancel=$("cancelButton"),buttonRow=$("buttonRow");
