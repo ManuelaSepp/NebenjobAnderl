@@ -1,7 +1,8 @@
 {
+  "id": "./",
   "name": "Arbeitszeit Nebenjob 2",
-  "short_name": "Nebenjob 2",
-  "description": "Separate Arbeitszeiterfassung für einen weiteren Nebenjob",
+  "short_name": "Nebenjob",
+  "description": "Arbeitszeiten im Nebenjob erfassen und verwalten",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
@@ -18,7 +19,19 @@
       "src": "icons/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-maskable-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ]
 }
