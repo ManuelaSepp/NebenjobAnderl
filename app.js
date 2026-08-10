@@ -1,6 +1,6 @@
 const SCRIPT_URL="https://script.google.com/macros/s/AKfycbw6AFla1jj2hQij6TwMSGO2rOBCIsj1gIY0uYIt25hKFCma1jg2ZuR90CLWVgijU5CoRQ/exec";
 const $=id=>document.getElementById(id),state={eintraege:[],taetigkeiten:[],kalenderDatum:new Date(),ausgewaehlt:null,originalDatum:null,soll:0,saldo:0,tooltipBlockDatum:null};
-const form=$("entryForm"),datum=$("datum"),taetigkeitenDropdown=$("taetigkeitenDropdown"),taetigkeitenButton=$("taetigkeitenButton"),taetigkeitenListe=$("taetigkeitenListe"),freieBox=$("freieBox"),freieTaetigkeit=$("freieTaetigkeit"),beginn=$("beginn"),ende=$("ende"),abwesenheit=$("abwesenheit"),notiz=$("notiz"),meldung=$("meldung");
+const form=$("entryForm"),datum=$("datum"),taetigkeitenDropdown=$("taetigkeitenDropdown"),taetigkeitenButton=$("taetigkeitenButton"),taetigkeitenListe=$("taetigkeitenListe"),freieBox=$("freieBox"),freieTaetigkeit=$("freieTaetigkeit"),beginn=$("beginn"),ende=$("ende"),abwesenheit=$("abwesenheit"),bezahlt=$("bezahlt"),notiz=$("notiz"),meldung=$("meldung");
 const save=$("saveButton"),update=$("updateButton"),del=$("deleteButton"),cancel=$("cancelButton"),buttonRow=$("buttonRow");
 
 window.onload=init;
@@ -90,8 +90,10 @@ function handleAbwesenheit(){
   freieTaetigkeit.disabled=x;
   beginn.disabled=x;
   ende.disabled=x;
+  bezahlt.disabled=x;
 
   if(x){
+    bezahlt.checked=false;
     freieTaetigkeit.value="";
     freieBox.classList.add("hidden");
   }
@@ -164,6 +166,7 @@ function daten(){
     ende:ende.value,
     stunden:stundenBerechnen(),
     abwesenheit:abwesenheit.value,
+    bezahlt:!!bezahlt.checked,
     notiz:notiz.value
   };
 }
@@ -247,6 +250,7 @@ function eintragLaden(e){
   beginn.value=e.beginn||"";
   ende.value=e.ende||"";
   abwesenheit.value=e.abwesenheit||"";
+  bezahlt.checked=!!e.bezahlt;
   notiz.value=e.notiz||"";
   handleAbwesenheit();
   editMode(true);
@@ -266,6 +270,8 @@ function resetForm(heute=true){
   beginn.value="";
   ende.value="";
   abwesenheit.value="";
+  bezahlt.checked=false;
+  bezahlt.disabled=false;
   notiz.value="";
 
   if(heute){
@@ -310,7 +316,7 @@ function renderKalender(){
     b.type="button";
     b.dataset.datum=i;
     b.className="day-cell "+(e?(e.abwesenheit?"status-abwesenheit":"status-arbeit"):"")+(i===iso(new Date())?" today":"")+(i===state.ausgewaehlt?" selected":"");
-    b.innerHTML=`<span class="day-number">${t}</span><span class="status-label">${e?(e.abwesenheit||format(e.stunden)+" h"):""}</span>`;
+    b.innerHTML=`<span class="day-number">${t}</span><span class="status-label">${e?(e.abwesenheit||(format(e.stunden)+" h"+(e.bezahlt?" ✓":""))):""}</span>`;
     if(e){
       const tooltipText=tooltipFuerEintrag(e);
       b.title=tooltipText.replace(/\n/g," | ");
@@ -354,6 +360,7 @@ function tooltipFuerEintrag(e){
     if(e.taetigkeit)zeilen.push("Tätigkeit: "+e.taetigkeit);
     if(e.beginn||e.ende)zeilen.push("Zeit: "+(e.beginn||"–")+" bis "+(e.ende||"–")+" Uhr");
     zeilen.push("Stunden: "+format(e.stunden)+" h");
+    zeilen.push("Bezahlt: "+(e.bezahlt?"Ja":"Nein"));
   }
 
   if(e.notiz)zeilen.push("Notiz: "+e.notiz);

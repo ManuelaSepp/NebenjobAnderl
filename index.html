@@ -22,7 +22,7 @@ label{display:block;margin:16px 0 7px;font-weight:700}input,select,textarea,butt
 .activity-option{display:flex;align-items:center;gap:10px;min-height:42px;margin:0;padding:8px 10px;border-radius:9px;font-weight:400}
 .activity-option:hover{background:#f4f6f8}.activity-option input{width:22px;min-height:22px;margin:0;padding:0;flex:0 0 auto}
 .multi-select.disabled{opacity:.55;pointer-events:none}.multi-select-button:disabled{opacity:.55}
-.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.hidden{display:none}.hours-box{margin-top:14px;padding:14px;border-radius:12px;background:#eef3f7;text-align:center;font-weight:700}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.hidden{display:none}.hours-box{margin-top:14px;padding:14px;border-radius:12px;background:#eef3f7;text-align:center;font-weight:700}.paid-check{display:flex;align-items:center;gap:10px;margin:14px 0 0;font-weight:700}.paid-check input{width:22px;min-height:22px;margin:0;padding:0;flex:0 0 auto}
 .button-row{display:grid;gap:10px;margin-top:24px}.button-row.edit-mode{grid-template-columns:1fr 1fr}.button-row button{border:0;color:white;font-weight:700}
 #saveButton,#updateButton{background:#70ad47}#deleteButton{background:#c94c4c}#cancelButton{background:#7b8794}.secondary-row{display:none;grid-column:1/-1}.edit-mode .secondary-row{display:block}
 #meldung{text-align:center;min-height:24px;margin-top:14px;font-weight:700}.success{color:#337a19}.error{color:#b42318}
@@ -37,7 +37,7 @@ details.card{padding:0;overflow:hidden}summary{padding:18px 20px;font-size:19px;
 <main class="app">
 <section class="card">
 <h1>Arbeitszeit Nebenjob 2</h1>
-<p class="subtitle">6 Sollstunden pro Woche</p>
+
 <form id="entryForm">
 <label for="datum">Datum</label><input type="date" id="datum" required>
 <label>Tätigkeiten</label>
@@ -51,6 +51,7 @@ details.card{padding:0;overflow:hidden}summary{padding:18px 20px;font-size:19px;
 <div><label for="ende">Ende</label><input type="time" id="ende"></div>
 </div>
 <div class="hours-box">Berechnete Stunden: <span id="stundenAnzeige">0</span></div>
+<label class="paid-check" for="bezahlt"><input type="checkbox" id="bezahlt"><span>Stunden bezahlt</span></label>
 <label for="abwesenheit">Abwesenheit</label>
 <select id="abwesenheit"><option value="">Keine</option><option>Urlaub</option><option>Krank</option></select>
 <label for="notiz">Notiz (optional)</label><textarea id="notiz"></textarea>
@@ -74,6 +75,6 @@ details.card{padding:0;overflow:hidden}summary{padding:18px 20px;font-size:19px;
 </div></div></details>
 </main>
 <div id="calendarTooltip" class="calendar-tooltip" role="tooltip"></div>
-<script src="app.js?v=10"></script>
+<script src="app.js?v=11"></script>
 <script>if("serviceWorker"in navigator){navigator.serviceWorker.register("./service-worker.js").catch(console.error)}</script>
 </body></html>
